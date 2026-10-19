@@ -1,0 +1,1810 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LENTE Studio & Academy | Visual Arts Hub</title>
+  
+  <!-- Bootstrap 5 CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- FontAwesome 6 CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <!-- Google Fonts: Cormorant Garamond & Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       THEME VARIABLES & BASE STYLES
+       ========================================================================== */
+    :root {
+      --bg-dark: #08090d;
+      --bg-card: rgba(18, 21, 31, 0.75);
+      --bg-card-hover: rgba(26, 31, 46, 0.9);
+      --accent-gold: #d4af37;
+      --accent-gold-light: #f3e5ab;
+      --accent-gold-glow: rgba(212, 175, 55, 0.25);
+      --text-main: #f0f2f5;
+      --text-muted: #9ba3b4;
+      --border-color: rgba(212, 175, 55, 0.18);
+      --glass-bg: rgba(12, 15, 23, 0.85);
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Montserrat', system-ui, -apple-system, sans-serif;
+      --transition-smooth: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    [data-theme="light"] {
+      --bg-dark: #f8f9fc;
+      --bg-card: rgba(255, 255, 255, 0.85);
+      --bg-card-hover: rgba(255, 255, 255, 1);
+      --accent-gold: #b8860b;
+      --accent-gold-light: #d4af37;
+      --accent-gold-glow: rgba(184, 134, 11, 0.15);
+      --text-main: #1a1e29;
+      --text-muted: #5c6578;
+      --border-color: rgba(184, 134, 11, 0.25);
+      --glass-bg: rgba(248, 249, 252, 0.9);
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      overflow-x: hidden;
+      transition: background-color 0.4s ease, color 0.4s ease;
+      scroll-behavior: smooth;
+    }
+
+    h1, h2, h3, h4, .font-serif {
+      font-family: var(--font-serif);
+      letter-spacing: 0.5px;
+    }
+
+    .text-gold {
+      color: var(--accent-gold) !important;
+    }
+
+    .bg-gold {
+      background-color: var(--accent-gold) !important;
+      color: #000 !important;
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--accent-gold) 0%, #b8860b 100%);
+      color: #0b0c10 !important;
+      font-weight: 600;
+      border: none;
+      padding: 0.65rem 1.6rem;
+      border-radius: 50px;
+      transition: var(--transition-smooth);
+      box-shadow: 0 4px 15px var(--accent-gold-glow);
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+      background: linear-gradient(135deg, #f3e5ab 0%, var(--accent-gold) 100%);
+    }
+
+    .btn-outline-gold {
+      border: 1px solid var(--accent-gold);
+      color: var(--accent-gold) !important;
+      background: transparent;
+      padding: 0.6rem 1.5rem;
+      border-radius: 50px;
+      transition: var(--transition-smooth);
+    }
+
+    .btn-outline-gold:hover {
+      background: var(--accent-gold);
+      color: #0b0c10 !important;
+      transform: translateY(-2px);
+    }
+
+    /* Glassmorphism Cards */
+    .glass-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      transition: var(--transition-smooth);
+    }
+
+    .glass-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent-gold);
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3), 0 0 20px var(--accent-gold-glow);
+    }
+
+    /* Top Sticky Navbar */
+    .navbar {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-color);
+      transition: var(--transition-smooth);
+      z-index: 1050;
+    }
+
+    .navbar-brand {
+      font-family: var(--font-serif);
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--text-main) !important;
+      letter-spacing: 1.5px;
+    }
+
+    .nav-link {
+      color: var(--text-muted) !important;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 0.5rem 1rem !important;
+      transition: var(--transition-smooth);
+      position: relative;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--accent-gold) !important;
+    }
+
+    .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 1rem;
+      right: 1rem;
+      height: 2px;
+      background-color: var(--accent-gold);
+      border-radius: 2px;
+    }
+
+    /* Hero & Introduction Styling */
+    .hero-section {
+      position: relative;
+      padding: 9rem 0 6rem;
+      background: radial-gradient(circle at 50% 20%, rgba(212, 175, 55, 0.12) 0%, transparent 60%),
+                  radial-gradient(circle at 80% 80%, rgba(69, 162, 158, 0.08) 0%, transparent 50%);
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 5vw, 4.2rem);
+      font-weight: 700;
+      line-height: 1.15;
+    }
+
+    .stat-box {
+      border-right: 1px solid var(--border-color);
+    }
+    .stat-box:last-child {
+      border-right: none;
+    }
+
+    /* Category Badges */
+    .category-badge {
+      cursor: pointer;
+      padding: 0.6rem 1.4rem;
+      border-radius: 50px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      transition: var(--transition-smooth);
+      font-size: 0.88rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      user-select: none;
+    }
+
+    .category-badge:hover, .category-badge.active {
+      background: var(--accent-gold);
+      color: #0b0c10;
+      border-color: var(--accent-gold);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px var(--accent-gold-glow);
+    }
+
+    /* Simulator Controls & Canvas */
+    .sim-card {
+      background: rgba(10, 12, 18, 0.95);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .sim-preview-box {
+      position: relative;
+      width: 100%;
+      height: 280px;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Before / After Slider */
+    .ba-slider-container {
+      position: relative;
+      width: 100%;
+      height: 320px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .ba-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .ba-after {
+      width: 100%;
+      z-index: 2;
+    }
+
+    .ba-slider-input {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      z-index: 10;
+      cursor: ew-resize;
+    }
+
+    .ba-handle {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--accent-gold);
+      z-index: 5;
+      pointer-events: none;
+      box-shadow: 0 0 10px var(--accent-gold);
+    }
+
+    .ba-handle::after {
+      content: '↔';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 34px;
+      height: 34px;
+      background: var(--accent-gold);
+      color: #000;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    /* Checklist & Shot List */
+    .checklist-item {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem 1rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: var(--transition-smooth);
+    }
+
+    .checklist-item:hover {
+      border-color: var(--border-color);
+      background: rgba(212, 175, 55, 0.05);
+    }
+
+    .checklist-item.completed span {
+      text-decoration: line-through;
+      color: var(--text-muted);
+    }
+
+    /* Toast Notification */
+    .toast-container {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 1100;
+    }
+
+    .custom-toast {
+      background: var(--bg-card);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--accent-gold);
+      border-radius: var(--radius-sm);
+      color: var(--text-main);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    /* Floating Bookmark Drawer Trigger */
+    .bookmark-float-btn {
+      position: fixed;
+      bottom: 2rem;
+      left: 2rem;
+      z-index: 1040;
+      background: var(--bg-card);
+      border: 1px solid var(--accent-gold);
+      color: var(--accent-gold);
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .bookmark-float-btn:hover {
+      transform: scale(1.1);
+      background: var(--accent-gold);
+      color: #000;
+    }
+
+    .badge-counter {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: #e63946;
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: bold;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Modal Styling */
+    .modal-content {
+      background: var(--bg-dark);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      color: var(--text-main);
+    }
+
+    .modal-header {
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .modal-footer {
+      border-top: 1px solid var(--border-color);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-dark);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #2a2f40;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent-gold);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       NAVIGATION BAR
+       ========================================================================== -->
+  <nav class="navbar navbar-expand-lg fixed-top px-3 px-lg-5">
+    <div class="container-fluid">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#home">
+        <i class="fa-solid fa-camera-retro text-gold"></i>
+        <span>LENTE</span>
+        <span class="fs-6 text-muted fw-normal d-none d-sm-inline">| ACADEMY</span>
+      </a>
+
+      <button class="navbar-toggler border-0 text-gold" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+        <i class="fa-solid fa-bars fs-4"></i>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#introduction">Intro</a></li>
+          <li class="nav-item"><a class="nav-link" href="#featured">Featured</a></li>
+          <li class="nav-item"><a class="nav-link" href="#interactive-tools">Tools</a></li>
+          <li class="nav-item"><a class="nav-link" href="#categories-section">Categories</a></li>
+          <li class="nav-item"><a class="nav-link" href="#resources">Resources</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+
+        <div class="d-flex align-items-center gap-3">
+          <button class="btn btn-sm btn-outline-gold rounded-circle p-2" id="themeToggleBtn" title="Toggle Theme" style="width: 38px; height: 38px;">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+          <a href="#resources" class="btn btn-gold btn-sm d-none d-md-inline-block">
+            <i class="fa-solid fa-compass me-1"></i> Explore Hub
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ==========================================================================
+       SECTION I: HOME SECTION (id="home")
+       ========================================================================== -->
+  <section id="home">
+    
+    <!-- SUB-SECTION Ia: Introduction (id="introduction") -->
+    <div id="introduction" class="hero-section">
+      <div class="container">
+        <div class="row align-items-center gy-5">
+          <div class="col-lg-7">
+            <span class="badge bg-outline-gold border border-gold text-gold px-3 py-2 rounded-pill mb-3">
+              <i class="fa-solid fa-crown me-1"></i> Premier Creator Knowledge Vault
+            </span>
+            <h1 class="hero-title mb-4">
+              Master the Craft of <br>
+              <span class="text-gold">Light, Lens & Motion</span>
+            </h1>
+            <p class="text-muted fs-5 mb-4 pe-lg-4">
+              LENTE is an elite educational repository providing world-class photography frameworks, cinematographic breakdown guides, LUT packs, and interactive exposure tools for visual storytellers.
+            </p>
+
+            <!-- Quick Search Bar -->
+            <div class="glass-card p-2 mb-4 max-w-600">
+              <div class="input-group">
+                <span class="input-group-text bg-transparent border-0 text-gold fs-5 ps-3">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </span>
+                <input type="text" id="quickSearchInput" class="form-control bg-transparent border-0 text-main shadow-none" placeholder="Search masterclasses, LUTs, lighting diagrams, gear guides...">
+                <button class="btn btn-gold" type="button" id="quickSearchBtn">Search</button>
+              </div>
+            </div>
+
+            <div class="d-flex flex-wrap gap-3">
+              <a href="#interactive-tools" class="btn btn-gold">
+                <i class="fa-solid fa-sliders me-2"></i> Launch Exposure Simulator
+              </a>
+              <a href="#resources" class="btn btn-outline-gold">
+                <i class="fa-solid fa-book-open me-2"></i> Browse All Guides
+              </a>
+            </div>
+          </div>
+
+          <!-- Hero Graphic / Interactive Card Preview -->
+          <div class="col-lg-5">
+            <div class="glass-card p-4 position-relative overflow-hidden text-center">
+              <div class="position-absolute top-0 start-0 w-100 h-100 opacity-25" style="background: radial-gradient(circle, var(--accent-gold) 0%, transparent 70%);"></div>
+              <i class="fa-solid fa-film text-gold opacity-50 mb-3" style="font-size: 4rem;"></i>
+              <h3 class="h4 mb-2">Cinematic Excellence</h3>
+              <p class="text-muted small mb-4">Curated by industry directors, colorists, and commercial photographers worldwide.</p>
+              
+              <!-- Quick Stats Grid -->
+              <div class="row g-2 border-top border-secondary pt-3 mt-2">
+                <div class="col-4 stat-box">
+                  <h4 class="text-gold mb-0 fw-bold">250+</h4>
+                  <span class="small text-muted">Guides</span>
+                </div>
+                <div class="col-4 stat-box">
+                  <h4 class="text-gold mb-0 fw-bold">60+</h4>
+                  <span class="small text-muted">LUT Packs</span>
+                </div>
+                <div class="col-4 stat-box">
+                  <h4 class="text-gold mb-0 fw-bold">35k</h4>
+                  <span class="small text-muted">Creators</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUB-SECTION Ib: Featured Section (id="featured") -->
+    <div id="featured" class="container py-5">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-end mb-4">
+        <div>
+          <span class="text-gold uppercase small fw-semibold tracking-wider">Curated Masterclasses</span>
+          <h2 class="display-6 fw-bold mb-0">Featured Resources</h2>
+        </div>
+        <a href="#resources" class="text-gold text-decoration-none mt-2 mt-md-0 fw-medium">
+          View All Resources <i class="fa-solid fa-arrow-right ms-1"></i>
+        </a>
+      </div>
+
+      <!-- Featured Items Grid -->
+      <div class="row g-4" id="featuredGridContainer">
+        <!-- Rendered dynamically via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       EXTRA INTERACTIVE CREATOR SUITE (Bonus High-Value Interactive Tools)
+       ========================================================================== -->
+  <section id="interactive-tools" class="py-5 my-4" style="background: rgba(0,0,0,0.2);">
+    <div class="container">
+      <div class="text-center max-w-700 mx-auto mb-5">
+        <span class="badge bg-gold text-dark px-3 py-2 rounded-pill mb-2">Interactive Learning</span>
+        <h2 class="display-6 fw-bold">Creator Technical Studio</h2>
+        <p class="text-muted">Master camera optics, color theory, and production logistics with live interactive controls.</p>
+      </div>
+
+      <!-- Interactive Tool Tabs -->
+      <ul class="nav nav-pills justify-content-center mb-4 gap-2" id="toolTabs" role="tablist">
+        <li class="nav-item">
+          <button class="category-badge active" id="exposure-tab" data-bs-toggle="tab" data-bs-target="#exposure-sim" type="button">
+            <i class="fa-solid fa-sliders"></i> Exposure Triangle Simulator
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="category-badge" id="lut-tab" data-bs-toggle="tab" data-bs-target="#lut-slider-tool" type="button">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> LUT Color Grade Compare
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="category-badge" id="shotlist-tab" data-bs-toggle="tab" data-bs-target="#shotlist-builder" type="button">
+            <i class="fa-solid fa-list-check"></i> Production Shot List Planner
+          </button>
+        </li>
+      </ul>
+
+      <div class="tab-content" id="toolTabsContent">
+        
+        <!-- TOOL 1: EXPOSURE TRIANGLE SIMULATOR -->
+        <div class="tab-pane fade show active" id="exposure-sim" role="tabpanel">
+          <div class="glass-card p-4">
+            <div class="row g-4 align-items-center">
+              
+              <!-- Controls Column -->
+              <div class="col-lg-5">
+                <h3 class="h4 mb-3 text-gold"><i class="fa-solid fa-camera me-2"></i>Exposure Triangle Engine</h3>
+                <p class="text-muted small mb-4">Adjust Aperture, Shutter Speed, and ISO to balance brightness, bokeh depth of field, motion blur, and sensor grain.</p>
+
+                <!-- Aperture Slider -->
+                <div class="mb-4">
+                  <div class="d-flex justify-content-between mb-1">
+                    <label class="fw-semibold small">Aperture (f-stop)</label>
+                    <span id="apertureValue" class="text-gold fw-bold">f/2.8</span>
+                  </div>
+                  <input type="range" class="form-range" id="apertureSlider" min="1.4" max="22" step="0.1" value="2.8">
+                  <div class="d-flex justify-content-between text-muted x-small" style="font-size: 0.75rem;">
+                    <span>f/1.4 (Shallow Depth / Bokeh)</span>
+                    <span>f/22 (Deep Focus)</span>
+                  </div>
+                </div>
+
+                <!-- Shutter Speed Slider -->
+                <div class="mb-4">
+                  <div class="d-flex justify-content-between mb-1">
+                    <label class="fw-semibold small">Shutter Speed</label>
+                    <span id="shutterValue" class="text-gold fw-bold">1/500s</span>
+                  </div>
+                  <input type="range" class="form-range" id="shutterSlider" min="1" max="8" step="1" value="5">
+                  <div class="d-flex justify-content-between text-muted x-small" style="font-size: 0.75rem;">
+                    <span>1/4000s (Freeze Motion)</span>
+                    <span>1/2s (Motion Blur)</span>
+                  </div>
+                </div>
+
+                <!-- ISO Slider -->
+                <div class="mb-4">
+                  <div class="d-flex justify-content-between mb-1">
+                    <label class="fw-semibold small">Sensor ISO</label>
+                    <span id="isoValue" class="text-gold fw-bold">ISO 400</span>
+                  </div>
+                  <input type="range" class="form-range" id="isoSlider" min="1" max="7" step="1" value="3">
+                  <div class="d-flex justify-content-between text-muted x-small" style="font-size: 0.75rem;">
+                    <span>ISO 100 (Clean Light)</span>
+                    <span>ISO 12800 (High Noise)</span>
+                  </div>
+                </div>
+
+                <!-- Exposure Status Indicator -->
+                <div class="p-3 rounded bg-dark border border-secondary text-center">
+                  <div class="small text-muted mb-1">Calculated Exposure Status</div>
+                  <div id="exposureMeterStatus" class="fw-bold fs-5 text-success">Balanced Exposure (+0.0 EV)</div>
+                </div>
+              </div>
+
+              <!-- Visual Output Simulation Viewport -->
+              <div class="col-lg-7">
+                <div class="sim-card p-3">
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="small text-muted fw-semibold"><i class="fa-solid fa-eye me-1"></i> Live Optical Preview</span>
+                    <span class="badge bg-secondary" id="histogramBadge">DOF: Shallow | Grain: Low</span>
+                  </div>
+
+                  <div class="sim-preview-box overflow-hidden position-relative" id="simViewport">
+                    
+                    <!-- Simulated Background (Trees/Lights for Bokeh test) -->
+                    <div id="simBackground" class="position-absolute top-0 start-0 w-100 h-100" 
+                         style="background: radial-gradient(circle at 30% 30%, #e5c583 0%, transparent 20%), 
+                                     radial-gradient(circle at 70% 40%, #45a29e 0%, transparent 25%),
+                                     radial-gradient(circle at 80% 80%, #d4af37 0%, transparent 15%), #111; 
+                                border-radius: 4px;">
+                    </div>
+
+                    <!-- Simulated Moving Subject (Car/Runner graphic for Motion Blur test) -->
+                    <div id="simSubject" class="position-absolute text-center" style="top: 35%; left: 40%; transition: filter 0.2s ease;">
+                      <i class="fa-solid fa-person-running text-light" style="font-size: 5rem;"></i>
+                      <div class="text-gold fw-bold mt-1 small font-serif">Subject in Motion</div>
+                    </div>
+
+                    <!-- Simulated Grain Overlay -->
+                    <div id="simNoiseOverlay" class="position-absolute top-0 start-0 w-100 h-100 pointer-events-none" 
+                         style="opacity: 0; background-image: radial-gradient(#fff 1px, transparent 0); background-size: 4px 4px;">
+                    </div>
+
+                    <!-- Exposure Overlay Shade -->
+                    <div id="simExposureOverlay" class="position-absolute top-0 start-0 w-100 h-100 pointer-events-none" style="background: black; opacity: 0;"></div>
+                  </div>
+
+                  <div class="mt-3 text-muted x-small d-flex justify-content-between" style="font-size: 0.8rem;">
+                    <span><i class="fa-solid fa-circle-info text-gold me-1"></i> Aperture alters background blur width.</span>
+                    <span>Shutter alters motion trail blur.</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- TOOL 2: BEFORE & AFTER LUT COLOR GRADING SLIDER -->
+        <div class="tab-pane fade" id="lut-slider-tool" role="tabpanel">
+          <div class="glass-card p-4">
+            <div class="row g-4 align-items-center">
+              <div class="col-lg-4">
+                <h3 class="h4 mb-3 text-gold"><i class="fa-solid fa-palette me-2"></i>Cinematic LUT Presets</h3>
+                <p class="text-muted small mb-4">Drag the slider across the canvas to inspect flat RAW camera sensor footage vs. graded cinema color profiles.</p>
+                
+                <div class="d-flex flex-column gap-2 mb-4">
+                  <button class="btn btn-outline-gold text-start lut-preset-btn active" data-preset="teal-orange">
+                    <i class="fa-solid fa-film me-2"></i> Hollywood Teal & Orange
+                  </button>
+                  <button class="btn btn-outline-gold text-start lut-preset-btn" data-preset="moody-monochrome">
+                    <i class="fa-solid fa-circle-half-stroke me-2"></i> Silver Screen B&W Noir
+                  </button>
+                  <button class="btn btn-outline-gold text-start lut-preset-btn" data-preset="warm-portra">
+                    <i class="fa-solid fa-sun me-2"></i> Warm Kodak Portra 400
+                  </button>
+                  <button class="btn btn-outline-gold text-start lut-preset-btn" data-preset="cyber-neon">
+                    <i class="fa-solid fa-bolt me-2"></i> Cyberpunk Neon High-Contrast
+                  </button>
+                </div>
+              </div>
+
+              <div class="col-lg-8">
+                <div class="ba-slider-container" id="baContainer">
+                  <!-- Before Image (Flat Log Footage Simulation) -->
+                  <div class="ba-image ba-before" style="background: linear-gradient(135deg, #4a536b, #6b778d); filter: brightness(1.2) contrast(0.65) saturate(0.5);">
+                    <div class="p-3 text-white fw-bold bg-dark bg-opacity-50 inline-block m-3 rounded">RAW Flat LOG (Flat gamma)</div>
+                  </div>
+                  <!-- After Image (Color Graded Simulation) -->
+                  <div class="ba-image ba-after" id="baAfterLayer" style="background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); filter: contrast(1.3) saturate(1.4); clip-path: inset(0 50% 0 0);">
+                    <div class="p-3 text-gold fw-bold bg-dark bg-opacity-75 inline-block m-3 rounded float-end">Graded Cinema Output</div>
+                  </div>
+                  <div class="ba-handle" id="baHandle" style="left: 50%;"></div>
+                  <input type="range" class="ba-slider-input" id="baInput" min="0" max="100" value="50">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TOOL 3: PRODUCTION SHOT LIST & GEAR CHECKLIST BUILDER -->
+        <div class="tab-pane fade" id="shotlist-builder" role="tabpanel">
+          <div class="glass-card p-4">
+            <div class="row g-4">
+              <div class="col-md-6 border-end border-secondary">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h3 class="h5 mb-0 text-gold"><i class="fa-solid fa-clapperboard me-2"></i>Production Shot List</h3>
+                  <button class="btn btn-sm btn-outline-gold" id="clearShotsBtn">Clear Completed</button>
+                </div>
+                
+                <div class="input-group mb-3">
+                  <input type="text" id="newShotInput" class="form-control bg-dark text-main border-secondary" placeholder="e.g. Scene 1 - Establishing Tracking Shot f/2.8">
+                  <button class="btn btn-gold" id="addShotBtn"><i class="fa-solid fa-plus"></i></button>
+                </div>
+
+                <div id="shotListItems" class="pe-2" style="max-height: 300px; overflow-y: auto;">
+                  <!-- Rendered dynamically -->
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h3 class="h5 mb-0 text-gold"><i class="fa-solid fa-suitcase me-2"></i>Gear & Camera Pack List</h3>
+                  <button class="btn btn-sm btn-gold" id="printChecklistBtn"><i class="fa-solid fa-print me-1"></i> Export / Print</button>
+                </div>
+
+                <div class="input-group mb-3">
+                  <input type="text" id="newGearInput" class="form-control bg-dark text-main border-secondary" placeholder="e.g. Sony A7SIII, 35mm Prime, ND Filter, Gimbal">
+                  <button class="btn btn-gold" id="addGearBtn"><i class="fa-solid fa-plus"></i></button>
+                </div>
+
+                <div id="gearListItems" class="pe-2" style="max-height: 300px; overflow-y: auto;">
+                  <!-- Rendered dynamically -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==========================================================================
+       SECTION II: CATEGORIES & RESOURCES (id="categories-section")
+       ========================================================================== -->
+  <section id="categories-section" class="py-5">
+    <div class="container">
+      
+      <!-- SUB-SECTION IIa: Category Listing (id="categories") -->
+      <div id="categories" class="mb-5">
+        <div class="text-center max-w-700 mx-auto mb-4">
+          <span class="text-gold uppercase small fw-semibold tracking-wider">Curated Spectrum</span>
+          <h2 class="display-6 fw-bold">Explore Knowledge Spheres</h2>
+          <p class="text-muted">Select a domain below to filter learning blueprints, video breakdowns, and technical cheat sheets.</p>
+        </div>
+
+        <div class="d-flex flex-wrap justify-content-center gap-2" id="categoryBadgesContainer">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+
+      <!-- Filter & Sort Toolbar -->
+      <div class="glass-card p-3 mb-4 d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+        <div class="d-flex align-items-center gap-2 w-100 w-md-auto">
+          <i class="fa-solid fa-filter text-gold ms-2"></i>
+          <span class="fw-semibold small">Filter Level:</span>
+          <select id="difficultySelect" class="form-select form-select-sm bg-dark text-main border-secondary w-auto">
+            <option value="all">All Skill Levels</option>
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advanced">Advanced</option>
+          </select>
+        </div>
+
+        <div class="d-flex align-items-center gap-2 w-100 w-md-auto">
+          <i class="fa-solid fa-sort text-gold ms-2"></i>
+          <span class="fw-semibold small">Sort By:</span>
+          <select id="sortSelect" class="form-select form-select-sm bg-dark text-main border-secondary w-auto">
+            <option value="popular">Most Popular</option>
+            <option value="rating">Highest Rated</option>
+            <option value="title">Alphabetical (A-Z)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- SUB-SECTION IIb: Sample Resources Grid (id="resources") -->
+      <div id="resources">
+        <div class="row g-4" id="resourcesGridContainer">
+          <!-- Resources rendered dynamically via JavaScript -->
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ==========================================================================
+       SECTION III: ABOUT SECTION (id="about")
+       ========================================================================== -->
+  <section id="about" class="py-5" style="background: rgba(0,0,0,0.15);">
+    <div class="container">
+      
+      <!-- SUB-SECTION IIIa: Mission Statement (id="mission") -->
+      <div id="mission" class="mb-5 py-4">
+        <div class="row align-items-center gy-5">
+          <div class="col-lg-6">
+            <span class="text-gold uppercase small fw-semibold tracking-wider">Our Manifesto</span>
+            <h2 class="display-5 fw-bold mb-4 font-serif">Democratizing Visual Storytelling for the Modern Era</h2>
+            <p class="text-muted leading-relaxed mb-4">
+              LENTE Studio & Academy was founded on a simple principle: high-grade cinematographic and photographic knowledge should not be kept behind closed Hollywood doors.
+            </p>
+            <p class="text-muted leading-relaxed mb-4">
+              We provide actionable, math-backed, and artistically validated guides that help filmmakers, creators, and photographers master light, exposure dynamics, camera movement, and color space.
+            </p>
+
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <div class="glass-card p-3 d-flex align-items-center gap-3">
+                  <i class="fa-solid fa-lightbulb text-gold fs-3"></i>
+                  <div>
+                    <h4 class="h6 mb-0 fw-bold">Lighting Science</h4>
+                    <span class="x-small text-muted">Ratio & Color Temp</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="glass-card p-3 d-flex align-items-center gap-3">
+                  <i class="fa-solid fa-sliders text-gold fs-3"></i>
+                  <div>
+                    <h4 class="h6 mb-0 fw-bold">Color Workflows</h4>
+                    <span class="x-small text-muted">ACES & DaVinci YRGB</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Curriculum Timeline Roadmap -->
+          <div class="col-lg-6">
+            <div class="glass-card p-4">
+              <h3 class="h4 mb-4 text-gold font-serif"><i class="fa-solid fa-route me-2"></i>4-Step Mastery Roadmap</h3>
+              
+              <div class="position-relative ps-4 border-start border-gold">
+                <!-- Step 1 -->
+                <div class="mb-4 position-relative">
+                  <span class="position-absolute top-0 start-0 translate-middle p-2 bg-gold border border-dark rounded-circle" style="left: -25px !important;"></span>
+                  <h4 class="h6 text-gold mb-1">01. Optical Foundations & Exposure</h4>
+                  <p class="small text-muted mb-0">Master focal length compression, hyperfocal distances, and ISO sensor noise ceilings.</p>
+                </div>
+                <!-- Step 2 -->
+                <div class="mb-4 position-relative">
+                  <span class="position-absolute top-0 start-0 translate-middle p-2 bg-gold border border-dark rounded-circle" style="left: -25px !important;"></span>
+                  <h4 class="h6 text-gold mb-1">02. Cinematic Lighting & Framing</h4>
+                  <p class="small text-muted mb-0">Three-point setups, Rembrandt lighting, negative fill, and dynamic camera choreography.</p>
+                </div>
+                <!-- Step 3 -->
+                <div class="mb-4 position-relative">
+                  <span class="position-absolute top-0 start-0 translate-middle p-2 bg-gold border border-dark rounded-circle" style="left: -25px !important;"></span>
+                  <h4 class="h6 text-gold mb-1">03. Post-Production Color Grading</h4>
+                  <p class="small text-muted mb-0">Node trees, skin-tone vector lines, print film emulation, and HDR master exports.</p>
+                </div>
+                <!-- Step 4 -->
+                <div class="position-relative">
+                  <span class="position-absolute top-0 start-0 translate-middle p-2 bg-gold border border-dark rounded-circle" style="left: -25px !important;"></span>
+                  <h4 class="h6 text-gold mb-1">04. Commercial Pitching & Distribution</h4>
+                  <p class="small text-muted mb-0">Treatment decks, client pitch strategies, licensing models, and festival submissions.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUB-SECTION IIIb: Contact Information (id="contact") -->
+      <div id="contact" class="py-4">
+        <div class="row g-5">
+          
+          <!-- Contact Form -->
+          <div class="col-lg-7">
+            <div class="glass-card p-4 p-md-5">
+              <span class="text-gold uppercase small fw-semibold tracking-wider">Get in Touch</span>
+              <h2 class="display-6 fw-bold mb-4 font-serif">Connect with Studio Mentors</h2>
+              
+              <form id="contactForm" class="needs-validation" novalidate>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label for="contactName" class="form-label small fw-semibold">Full Name</label>
+                    <input type="text" class="form-control bg-dark text-main border-secondary" id="contactName" placeholder="Elena Rostova" required>
+                    <div class="invalid-feedback">Please enter your name.</div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="contactEmail" class="form-label small fw-semibold">Email Address</label>
+                    <input type="email" class="form-control bg-dark text-main border-secondary" id="contactEmail" placeholder="elena@studio.com" required>
+                    <div class="invalid-feedback">Please enter a valid email address.</div>
+                  </div>
+                  <div class="col-12">
+                    <label for="contactSubject" class="form-label small fw-semibold">Inquiry Subject</label>
+                    <select class="form-select bg-dark text-main border-secondary" id="contactSubject" required>
+                      <option value="">Select an topic...</option>
+                      <option value="Masterclass Inquiry">Masterclass & Course Inquiry</option>
+                      <option value="Resource Contribution">Resource Contribution / Collaboration</option>
+                      <option value="Studio Mentorship">1-on-1 Studio Mentorship</option>
+                      <option value="Technical Bug">Technical Support</option>
+                    </select>
+                    <div class="invalid-feedback">Please select a subject.</div>
+                  </div>
+                  <div class="col-12">
+                    <label for="contactMessage" class="form-label small fw-semibold">Message</label>
+                    <textarea class="form-control bg-dark text-main border-secondary" id="contactMessage" rows="4" placeholder="Tell us about your project or inquiry..." required></textarea>
+                    <div class="invalid-feedback">Please enter a message.</div>
+                  </div>
+                  <div class="col-12">
+                    <button type="submit" class="btn btn-gold w-100 py-3 mt-2">
+                      <i class="fa-solid fa-paper-plane me-2"></i> Send Message
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Contact Details & FAQ -->
+          <div class="col-lg-5">
+            <div class="glass-card p-4 mb-4">
+              <h3 class="h5 text-gold mb-3 font-serif"><i class="fa-solid fa-location-dot me-2"></i>Studio Headquarters</h3>
+              <p class="text-muted small mb-2"><i class="fa-solid fa-building me-2 text-gold"></i> LENTE Arts Center, 842 Visual Boulevard, Soho, NY 10012</p>
+              <p class="text-muted small mb-2"><i class="fa-solid fa-envelope me-2 text-gold"></i> contact@LENTEstudio.edu</p>
+              <p class="text-muted small mb-3"><i class="fa-solid fa-phone me-2 text-gold"></i> +1 (800) 555-LENTE</p>
+
+              <hr class="border-secondary my-3">
+
+              <span class="small text-muted fw-semibold d-block mb-2">Connect via Social Channels:</span>
+              <div class="d-flex gap-2">
+                <a href="#home" class="btn btn-sm btn-outline-gold rounded-circle" style="width: 36px; height: 36px;"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#home" class="btn btn-sm btn-outline-gold rounded-circle" style="width: 36px; height: 36px;"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#home" class="btn btn-sm btn-outline-gold rounded-circle" style="width: 36px; height: 36px;"><i class="fa-brands fa-vimeo-v"></i></a>
+                <a href="#home" class="btn btn-sm btn-outline-gold rounded-circle" style="width: 36px; height: 36px;"><i class="fa-brands fa-discord"></i></a>
+              </div>
+            </div>
+
+            <!-- FAQ Accordion -->
+            <div class="glass-card p-4">
+              <h3 class="h5 text-gold mb-3 font-serif"><i class="fa-solid fa-circle-question me-2"></i>Frequently Asked Questions</h3>
+              
+              <div class="accordion accordion-flush" id="faqAccordion">
+                <div class="accordion-item bg-transparent border-secondary">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed bg-transparent text-main shadow-none p-2 small" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                      Are all resources free to download?
+                    </button>
+                  </h2>
+                  <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body x-small text-muted p-2">
+                      Yes! Over 80% of our educational cheat sheets, lighting maps, and LUT packs are open-access for creators worldwide.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item bg-transparent border-secondary">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed bg-transparent text-main shadow-none p-2 small" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                      Which cameras are supported in guides?
+                    </button>
+                  </h2>
+                  <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body x-small text-muted p-2">
+                      Our frameworks apply universally to Sony, RED, ARRI, Blackmagic, Canon, Nikon, and Panasonic Lumix cameras.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item bg-transparent border-0">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed bg-transparent text-main shadow-none p-2 small" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                      How do I submit a guide?
+                    </button>
+                  </h2>
+                  <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body x-small text-muted p-2">
+                      Fill out our contact form selecting 'Resource Contribution' and our editorial board will review your pitch within 48 hours.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="py-4 border-top border-secondary text-center text-muted small" style="background: var(--bg-dark);">
+    <div class="container">
+      <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2">
+        <div>
+          <span class="text-gold font-serif fw-bold fs-5">LENTE</span> &copy; 2026. All rights reserved. Built for visual creators.
+        </div>
+        <div class="d-flex gap-3">
+          <a href="#home" class="text-muted text-decoration-none">Privacy Policy</a>
+          <a href="#home" class="text-muted text-decoration-none">Terms of Service</a>
+          <a href="#home" class="text-muted text-decoration-none">Creator License</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       BOOKMARKS FLOATING DRAWER TRIGGER & MODAL
+       ========================================================================== -->
+  <div class="bookmark-float-btn" id="openBookmarksBtn" title="Saved Resources">
+    <i class="fa-solid fa-bookmark fs-5"></i>
+    <span class="badge-counter" id="bookmarkCountBadge">0</span>
+  </div>
+
+  <!-- Resource Detail Modal -->
+  <div class="modal fade" id="resourceDetailModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="d-flex align-items-center gap-2">
+            <span class="badge bg-gold text-dark" id="modalCategoryBadge">Category</span>
+            <span class="badge bg-secondary" id="modalDifficultyBadge">Level</span>
+          </div>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="modalDetailBody">
+          <!-- Populated dynamically via JS -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-gold" id="modalBookmarkToggleBtn"><i class="fa-regular fa-bookmark me-1"></i> Bookmark Guide</button>
+          <button type="button" class="btn btn-gold" id="modalDownloadBtn"><i class="fa-solid fa-download me-1"></i> Download PDF Blueprint</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Saved Bookmarks Modal -->
+  <div class="modal fade" id="savedBookmarksModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-md modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title font-serif text-gold"><i class="fa-solid fa-bookmark me-2"></i>Saved Creator Resources</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div id="savedBookmarksContainer">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Feedback Toast -->
+  <div class="toast-container">
+    <div id="appToast" class="toast custom-toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex align-items-center p-3">
+        <i class="fa-solid fa-circle-check text-gold fs-4 me-3" id="toastIcon"></i>
+        <div class="toast-body p-0 me-auto" id="toastMessage">
+          Notification action successful!
+        </div>
+        <button type="button" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap 5 Bundle JS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- ==========================================================================
+       APPLICATION LOGIC SCRIPT
+       ========================================================================== -->
+  <script>
+    /* ==========================================
+       DATA MODEL: Educational Resources
+       ========================================== */
+    const RESOURCES_DATA = [
+      {
+        id: "res-1",
+        title: "Mastering Cinematic Lighting Ratios (Key, Fill & Backlight)",
+        category: "Portrait & Studio Lighting",
+        difficulty: "Intermediate",
+        rating: 4.9,
+        views: "14.2k",
+        featured: true,
+        summary: "Comprehensive guide to 3:1 and 8:1 lighting contrast ratios, key light placement, diffusion strength, and controlling lens flare.",
+        content: `
+          <h4>Architecting Atmosphere with Key & Negative Fill</h4>
+          <p>Lighting is not merely about exposure—it is the emotional vocabulary of cinema. Controlling contrast ratio dictates whether a scene feels dramatic, tender, or ominous.</p>
+          <h5>Key Takeaways:</h5>
+          <ul>
+            <li><strong>3:1 Contrast Ratio:</strong> Ideal for natural commercial portraiture and soft TV interview lighting.</li>
+            <li><strong>8:1 Contrast Ratio:</strong> Cinematic film-noir setups utilizing intense negative fill floppy flags.</li>
+            <li><strong>Diffusers & Scrims:</strong> Understanding Inverse Square Law when positioning softboxes relative to talent.</li>
+          </ul>
+        `,
+        tags: ["Lighting", "Key Light", "Cinematography", "Studio"]
+      },
+      {
+        id: "res-2",
+        title: "DaVinci Resolve Color Grading & Color Space Transformation",
+        category: "Color Grading & Post-Production",
+        difficulty: "Advanced",
+        rating: 4.95,
+        views: "22.8k",
+        featured: true,
+        summary: "Step-by-step CST node tree workflow for converting S-Log3, REDWideGamutRGB, and Arri LogC into Rec.709 with cinematic roll-off.",
+        content: `
+          <h4>Color Space Transform (CST) Node Architecture</h4>
+          <p>Proper color management prevents clipped highlights and maintains natural skin tone hue angles on the vectorscope.</p>
+          <h5>Workflow Breakdown:</h5>
+          <ul>
+            <li><strong>Node 01 (CST In):</strong> Input Color Space to DWG/Intermediate.</li>
+            <li><strong>Node 02 (Exposure & Balance):</strong> Primary wheel adjustments before look application.</li>
+            <li><strong>Node 03 (Parallel Split):</strong> Contrast, Saturation, and Hue vs Hue isolated edits.</li>
+            <li><strong>Node 04 (Print Emulation):</strong> Kodak 2383 D65 print LUT integration.</li>
+          </ul>
+        `,
+        tags: ["Color Grading", "DaVinci Resolve", "S-Log3", "Rec.709"]
+      },
+      {
+        id: "res-3",
+        title: "35mm Analog & Digital Portrait Compression Blueprint",
+        category: "Camera Gear",
+        difficulty: "Beginner",
+        rating: 4.8,
+        views: "9.5k",
+        featured: true,
+        summary: "Analyzing lens perspective distortion from 24mm wide-angle to 135mm telephoto optics on facial features.",
+        content: `
+          <h4>Selecting Focal Lengths for Emotional Intimacy</h4>
+          <p>Focal length dictates how the background compresses behind your subject. Discover why 85mm is considered the golden portrait optic.</p>
+          <h5>Optic Characteristics:</h5>
+          <ul>
+            <li><strong>35mm:</strong> Environmental portraiture giving contextual storytelling surrounding subject.</li>
+            <li><strong>85mm f/1.4:</strong> Creamy bokeh isolation with zero facial feature distortion.</li>
+            <li><strong>135mm:</strong> Extreme background compression isolating subject in dense environments.</li>
+          </ul>
+        `,
+        tags: ["Lenses", "Portraiture", "35mm", "Depth of Field"]
+      },
+      {
+        id: "res-4",
+        title: "Drone Aerial Motion Design & Parallax Choreography",
+        category: "Drone & Aerial Shooting",
+        difficulty: "Intermediate",
+        rating: 4.87,
+        views: "11.1k",
+        featured: true,
+        summary: "Execute smooth orbit tracking shots, reveal moves, and fly-through parallax compositions using ND filters.",
+        content: `
+          <h4>The Art of Low & Fast Aerial Framing</h4>
+          <p>Elevate drone footage from robotic snapshots to fluid cinematic establishing shots by employing shutter speed double rule and low altitude trajectories.</p>
+          <h5>Flight Maneuvers:</h5>
+          <ul>
+            <li><strong>Orbit Reveal:</strong> Point of interest focus while elevating altitude and expanding radius.</li>
+            <li><strong>Foreground Parallax:</strong> Flying past trees/cliffs to establish scale and depth.</li>
+          </ul>
+        `,
+        tags: ["Drone", "Aerial", "Framing", "Gimbal"]
+      },
+      {
+        id: "res-5",
+        title: "Location Sound & Wireless Mic Signal Optimization",
+        category: "Audio & Soundscapes",
+        difficulty: "Beginner",
+        rating: 4.75,
+        views: "7.8k",
+        featured: false,
+        summary: "Acoustic treatment hacks, lavalier mic concealment techniques, and gain staging on 32-bit float recorders.",
+        content: `
+          <h4>32-Bit Float & Clean Audio Capture</h4>
+          <p>Bad audio will break good video faster than poor lighting. Master gain structure and lavalier tape mounting technique.</p>
+        `,
+        tags: ["Audio", "Lavalier", "Sound Design", "32-Bit Float"]
+      },
+      {
+        id: "res-6",
+        title: "Commercial Pitch Decks & Treatment Frameworks",
+        category: "Business & Pitching",
+        difficulty: "Advanced",
+        rating: 4.92,
+        views: "18.4k",
+        featured: false,
+        summary: "Template deck structure for winning $50k+ commercial film bids, visual moodboards, and director notes.",
+        content: `
+          <h4>Pitching Directors Vision to Agencies</h4>
+          <p>Structure deck slides for maximum impact: Logline, Visual Tone, Lighting Concept, Casting, and Production Timeline.</p>
+        `,
+        tags: ["Business", "Pitch Deck", "Commercials", "Director"]
+      }
+    ];
+
+    const CATEGORIES_LIST = [
+      "All Domains",
+      "Camera Gear",
+      "Portrait & Studio Lighting",
+      "Cinematography & Movement",
+      "Color Grading & Post-Production",
+      "Audio & Soundscapes",
+      "Drone & Aerial Shooting",
+      "Business & Pitching"
+    ];
+
+    /* ==========================================
+       STATE MANAGEMENT
+       ========================================== */
+    let selectedCategory = "All Domains";
+    let searchQuery = "";
+    let selectedDifficulty = "all";
+    let selectedSort = "popular";
+    let bookmarks = JSON.parse(localStorage.getItem('LENTE_bookmarks')) || [];
+    let shotList = JSON.parse(localStorage.getItem('LENTE_shots')) || [
+      { text: "Scene 1 - Establishing Drone Shot", completed: false },
+      { text: "Scene 2 - Over-the-Shoulder Medium Shot f/2.0", completed: true }
+    ];
+    let gearList = JSON.parse(localStorage.getItem('LENTE_gear')) || [
+      { text: "Cinema Camera Body + 3 Batteries", completed: true },
+      { text: "50mm f/1.2 Prime Lens + Variable ND Filter", completed: false }
+    ];
+
+    /* ==========================================
+       INITIALIZATION ON DOM LOAD
+       ========================================== */
+    document.addEventListener('DOMContentLoaded', () => {
+      initTheme();
+      renderFeaturedGrid();
+      renderCategoryBadges();
+      renderResourcesGrid();
+      initExposureSim();
+      initLUTSlider();
+      initShotListBuilder();
+      updateBookmarkUI();
+      setupEventListeners();
+      setupFormValidation();
+    });
+
+    /* ==========================================
+       THEME MANAGEMENT
+       ========================================== */
+    function initTheme() {
+      const savedTheme = localStorage.getItem('LENTE_theme') || 'dark';
+      document.documentElement.setAttribute('data-bs-theme', savedTheme);
+      updateThemeIcon(savedTheme);
+
+      document.getElementById('themeToggleBtn').addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-bs-theme');
+        const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-bs-theme', nextTheme);
+        localStorage.setItem('LENTE_theme', nextTheme);
+        updateThemeIcon(nextTheme);
+        showToast(`Switched to ${nextTheme.toUpperCase()} theme`);
+      });
+    }
+
+    function updateThemeIcon(theme) {
+      const icon = document.querySelector('#themeToggleBtn i');
+      if (theme === 'light') {
+        icon.className = 'fa-solid fa-sun text-warning';
+      } else {
+        icon.className = 'fa-solid fa-moon text-gold';
+      }
+    }
+
+    /* ==========================================
+       FEATURED GRID RENDERER
+       ========================================== */
+    function renderFeaturedGrid() {
+      const container = document.getElementById('featuredGridContainer');
+      const featuredItems = RESOURCES_DATA.filter(r => r.featured);
+      
+      container.innerHTML = featuredItems.map(item => `
+        <div class="col-lg-6">
+          <div class="glass-card p-4 h-100 d-flex flex-column justify-content-between">
+            <div>
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="badge bg-gold text-dark">${item.category}</span>
+                <span class="small text-muted"><i class="fa-solid fa-star text-warning me-1"></i>${item.rating}</span>
+              </div>
+              <h3 class="h4 mb-2 font-serif">${item.title}</h3>
+              <p class="text-muted small mb-3">${item.summary}</p>
+            </div>
+            
+            <div class="d-flex align-items-center justify-content-between border-top border-secondary pt-3 mt-3">
+              <span class="badge bg-secondary">${item.difficulty}</span>
+              <div class="d-flex gap-2">
+                <button class="btn btn-sm btn-outline-gold" onclick="toggleBookmark('${item.id}')">
+                  <i class="${isBookmarked(item.id) ? 'fa-solid' : 'fa-regular'} fa-bookmark"></i>
+                </button>
+                <button class="btn btn-sm btn-gold" onclick="openResourceModal('${item.id}')">
+                  Read Blueprint <i class="fa-solid fa-arrow-right ms-1"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    /* ==========================================
+       CATEGORY BADGES RENDERER
+       ========================================== */
+    function renderCategoryBadges() {
+      const container = document.getElementById('categoryBadgesContainer');
+      container.innerHTML = CATEGORIES_LIST.map(cat => {
+        const count = cat === "All Domains" 
+          ? RESOURCES_DATA.length 
+          : RESOURCES_DATA.filter(r => r.category === cat).length;
+        const isActive = selectedCategory === cat ? 'active' : '';
+        
+        return `
+          <button class="category-badge ${isActive}" onclick="filterByCategory('${cat}')">
+            <span>${cat}</span>
+            <span class="badge rounded-pill bg-dark text-gold border border-gold">${count}</span>
+          </button>
+        `;
+      }).join('');
+    }
+
+    function filterByCategory(cat) {
+      selectedCategory = cat;
+      renderCategoryBadges();
+      renderResourcesGrid();
+    }
+
+    /* ==========================================
+       MAIN RESOURCES GRID & SEARCH RENDERER
+       ========================================== */
+    function renderResourcesGrid() {
+      const container = document.getElementById('resourcesGridContainer');
+      
+      let filtered = RESOURCES_DATA.filter(item => {
+        const matchesCategory = selectedCategory === "All Domains" || item.category === selectedCategory;
+        const matchesSearch = searchQuery === "" || 
+          item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          item.summary.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          item.tags.some(t => t.toLowerCase().includes(searchQuery.toLowerCase()));
+        const matchesDiff = selectedDifficulty === "all" || item.difficulty === selectedDifficulty;
+        return matchesCategory && matchesSearch && matchesDiff;
+      });
+
+      // Sorting
+      if (selectedSort === "rating") {
+        filtered.sort((a, b) => b.rating - a.rating);
+      } else if (selectedSort === "title") {
+        filtered.sort((a, b) => a.title.localeCompare(b.title));
+      } else { // popular
+        filtered.sort((a, b) => parseFloat(b.views) - parseFloat(a.views));
+      }
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="col-12 text-center py-5 glass-card">
+            <i class="fa-solid fa-folder-open text-muted mb-3" style="font-size: 3rem;"></i>
+            <h4 class="h5">No Educational Resources Found</h4>
+            <p class="text-muted small">Try broadening your search term or category filters.</p>
+            <button class="btn btn-gold btn-sm mt-2" onclick="resetFilters()">Reset All Filters</button>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(item => `
+        <div class="col-md-6 col-lg-4">
+          <div class="glass-card p-4 h-100 d-flex flex-column justify-content-between">
+            <div>
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="badge bg-gold text-dark small">${item.category}</span>
+                <span class="small text-muted"><i class="fa-solid fa-star text-warning me-1"></i>${item.rating}</span>
+              </div>
+              <h3 class="h5 mb-2 font-serif">${item.title}</h3>
+              <p class="text-muted x-small mb-3" style="font-size: 0.85rem;">${item.summary}</p>
+              
+              <div class="d-flex flex-wrap gap-1 mb-3">
+                ${item.tags.map(t => `<span class="badge bg-dark border border-secondary text-muted x-small">#${t}</span>`).join('')}
+              </div>
+            </div>
+
+            <div class="d-flex align-items-center justify-content-between border-top border-secondary pt-3 mt-2">
+              <span class="badge bg-secondary x-small">${item.difficulty}</span>
+              <div class="d-flex gap-2">
+                <button class="btn btn-sm btn-outline-gold" onclick="toggleBookmark('${item.id}')" title="Bookmark">
+                  <i class="${isBookmarked(item.id) ? 'fa-solid' : 'fa-regular'} fa-bookmark"></i>
+                </button>
+                <button class="btn btn-sm btn-gold" onclick="openResourceModal('${item.id}')">
+                  View Guide
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function resetFilters() {
+      selectedCategory = "All Domains";
+      searchQuery = "";
+      selectedDifficulty = "all";
+      document.getElementById('quickSearchInput').value = "";
+      renderCategoryBadges();
+      renderResourcesGrid();
+    }
+
+    /* ==========================================
+       BOOKMARKING SYSTEM (LOCALSTORAGE)
+       ========================================== */
+    function isBookmarked(id) {
+      return bookmarks.includes(id);
+    }
+
+    function toggleBookmark(id) {
+      if (isBookmarked(id)) {
+        bookmarks = bookmarks.filter(bId => bId !== id);
+        showToast("Removed resource from bookmarks.");
+      } else {
+        bookmarks.push(id);
+        showToast("Saved resource to bookmarks!");
+      }
+      localStorage.setItem('LENTE_bookmarks', JSON.stringify(bookmarks));
+      updateBookmarkUI();
+      renderFeaturedGrid();
+      renderResourcesGrid();
+    }
+
+    function updateBookmarkUI() {
+      const badge = document.getElementById('bookmarkCountBadge');
+      badge.textContent = bookmarks.length;
+    }
+
+    function renderSavedBookmarksModal() {
+      const container = document.getElementById('savedBookmarksContainer');
+      const savedItems = RESOURCES_DATA.filter(r => bookmarks.includes(r.id));
+
+      if (savedItems.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-4">
+            <i class="fa-regular fa-bookmark text-muted mb-2 fs-2"></i>
+            <p class="text-muted small">No bookmarked resources saved yet.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = savedItems.map(item => `
+        <div class="glass-card p-3 mb-2 d-flex justify-content-between align-items-center">
+          <div>
+            <span class="badge bg-gold text-dark x-small me-2">${item.category}</span>
+            <h6 class="mb-0 mt-1 font-serif">${item.title}</h6>
+          </div>
+          <div class="d-flex gap-2 ms-2">
+            <button class="btn btn-sm btn-gold" onclick="openResourceModal('${item.id}')">View</button>
+            <button class="btn btn-sm btn-outline-danger" onclick="toggleBookmark('${item.id}')"><i class="fa-solid fa-trash"></i></button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    /* ==========================================
+       RESOURCE DETAIL MODAL
+       ========================================== */
+    let currentModalResourceId = null;
+
+    function openResourceModal(id) {
+      const item = RESOURCES_DATA.find(r => r.id === id);
+      if (!item) return;
+
+      currentModalResourceId = id;
+      document.getElementById('modalCategoryBadge').textContent = item.category;
+      document.getElementById('modalDifficultyBadge').textContent = item.difficulty;
+
+      const body = document.getElementById('modalDetailBody');
+      body.innerHTML = `
+        <h2 class="h3 font-serif text-gold mb-3">${item.title}</h2>
+        <div class="d-flex align-items-center gap-3 text-muted small mb-4">
+          <span><i class="fa-solid fa-star text-warning me-1"></i>${item.rating} Rating</span>
+          <span><i class="fa-solid fa-eye me-1"></i>${item.views} Views</span>
+        </div>
+        <div class="resource-content-box p-3 glass-card mb-3">
+          ${item.content}
+        </div>
+      `;
+
+      // Update Bookmark Btn state in modal
+      const bmBtn = document.getElementById('modalBookmarkToggleBtn');
+      bmBtn.innerHTML = isBookmarked(id) 
+        ? '<i class="fa-solid fa-bookmark me-1"></i> Bookmarked' 
+        : '<i class="fa-regular fa-bookmark me-1"></i> Bookmark Guide';
+
+      const modal = new bootstrap.Modal(document.getElementById('resourceDetailModal'));
+      modal.show();
+    }
+
+    /* ==========================================
+       EXPOSURE TRIANGLE SIMULATOR ENGINE
+       ========================================== */
+    function initExposureSim() {
+      const apertureSlider = document.getElementById('apertureSlider');
+      const shutterSlider = document.getElementById('shutterSlider');
+      const isoSlider = document.getElementById('isoSlider');
+
+      const apertureValText = document.getElementById('apertureValue');
+      const shutterValText = document.getElementById('shutterValue');
+      const isoValText = document.getElementById('isoValue');
+      const statusText = document.getElementById('exposureMeterStatus');
+
+      const simBg = document.getElementById('simBackground');
+      const simSubject = document.getElementById('simSubject');
+      const simNoise = document.getElementById('simNoiseOverlay');
+      const simExposure = document.getElementById('simExposureOverlay');
+
+      const shutterLabels = ["1/4000s", "1/2000s", "1/1000s", "1/500s", "1/250s", "1/125s", "1/30s", "1/2s"];
+      const isoLabels = [100, 200, 400, 800, 1600, 3200, 12800];
+
+      function updateSimulation() {
+        const ap = parseFloat(apertureSlider.value);
+        const shIdx = parseInt(shutterSlider.value) - 1;
+        const isoIdx = parseInt(isoSlider.value) - 1;
+
+        const shutterVal = shutterLabels[shIdx];
+        const isoVal = isoLabels[isoIdx];
+
+        apertureValText.textContent = `f/${ap}`;
+        shutterValText.textContent = shutterVal;
+        isoValText.textContent = `ISO ${isoVal}`;
+
+        // Bokeh Blur effect based on Aperture (f/1.4 = blur 12px, f/22 = blur 0px)
+        const blurAmount = Math.max(0, (22 - ap) / 1.8);
+        simBg.style.filter = `blur(${blurAmount}px)`;
+
+        // Motion Blur based on shutter index (1/2s = high motion blur)
+        const motionBlur = (shIdx - 0) * 1.5;
+        simSubject.style.filter = `blur(${motionBlur}px)`;
+
+        // Noise Grain opacity based on ISO
+        const noiseOpacity = (isoIdx / 6) * 0.45;
+        simNoise.style.opacity = noiseOpacity;
+
+        // Calculate Exposure EV balance:
+        // Baseline: f/2.8 (ap=2.8), 1/500s (shIdx=3), ISO 400 (isoIdx=2)
+        const evOffset = (2.8 - ap) + (shIdx - 3) + (isoIdx - 2);
+
+        if (evOffset < -1.5) {
+          statusText.className = "fw-bold fs-5 text-danger";
+          statusText.textContent = `Underexposed (${evOffset.toFixed(1)} EV)`;
+          simExposure.style.opacity = Math.min(0.8, Math.abs(evOffset) * 0.2);
+          simExposure.style.background = 'black';
+        } else if (evOffset > 1.5) {
+          statusText.className = "fw-bold fs-5 text-warning";
+          statusText.textContent = `Overexposed (+${evOffset.toFixed(1)} EV)`;
+          simExposure.style.opacity = Math.min(0.7, evOffset * 0.2);
+          simExposure.style.background = 'white';
+        } else {
+          statusText.className = "fw-bold fs-5 text-success";
+          statusText.textContent = `Optimal Exposure (${evOffset >= 0 ? '+' : ''}${evOffset.toFixed(1)} EV)`;
+          simExposure.style.opacity = 0;
+        }
+      }
+
+      apertureSlider.addEventListener('input', updateSimulation);
+      shutterSlider.addEventListener('input', updateSimulation);
+      isoSlider.addEventListener('input', updateSimulation);
+
+      updateSimulation();
+    }
+
+    /* ==========================================
+       BEFORE & AFTER LUT SLIDER
+       ========================================== */
+    function initLUTSlider() {
+      const input = document.getElementById('baInput');
+      const afterLayer = document.getElementById('baAfterLayer');
+      const handle = document.getElementById('baHandle');
+
+      input.addEventListener('input', (e) => {
+        const val = e.target.value;
+        afterLayer.style.clipPath = `inset(0 ${100 - val}% 0 0)`;
+        handle.style.left = `${val}%`;
+      });
+
+      // Preset switcher
+      const presetBtns = document.querySelectorAll('.lut-preset-btn');
+      presetBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          presetBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const preset = btn.getAttribute('data-preset');
+          if (preset === 'teal-orange') {
+            afterLayer.style.filter = 'contrast(1.3) saturate(1.4) hue-rotate(-10deg)';
+          } else if (preset === 'moody-monochrome') {
+            afterLayer.style.filter = 'grayscale(1) contrast(1.6) brightness(0.9)';
+          } else if (preset === 'warm-portra') {
+            afterLayer.style.filter = 'sepia(0.3) contrast(1.1) saturate(1.2) brightness(1.05)';
+          } else if (preset === 'cyber-neon') {
+            afterLayer.style.filter = 'saturate(2) contrast(1.4) hue-rotate(120deg)';
+          }
+          showToast(`Applied Preset: ${btn.innerText.trim()}`);
+        });
+      });
+    }
+
+    /* ==========================================
+       PRODUCTION SHOT LIST & GEAR CHECKLIST
+       ========================================== */
+    function initShotListBuilder() {
+      renderShotList();
+      renderGearList();
+
+      document.getElementById('addShotBtn').addEventListener('click', () => {
+        const input = document.getElementById('newShotInput');
+        if (input.value.trim()) {
+          shotList.push({ text: input.value.trim(), completed: false });
+          input.value = '';
+          saveShotListData();
+          renderShotList();
+        }
+      });
+
+      document.getElementById('addGearBtn').addEventListener('click', () => {
+        const input = document.getElementById('newGearInput');
+        if (input.value.trim()) {
+          gearList.push({ text: input.value.trim(), completed: false });
+          input.value = '';
+          saveShotListData();
+          renderGearList();
+        }
+      });
+
+      document.getElementById('clearShotsBtn').addEventListener('click', () => {
+        shotList = shotList.filter(s => !s.completed);
+        saveShotListData();
+        renderShotList();
+        showToast("Cleared completed shots.");
+      });
+
+      document.getElementById('printChecklistBtn').addEventListener('click', () => {
+        window.print();
+      });
+    }
+
+    function saveShotListData() {
+      localStorage.setItem('LENTE_shots', JSON.stringify(shotList));
+      localStorage.setItem('LENTE_gear', JSON.stringify(gearList));
+    }
+
+    function renderShotList() {
+      const container = document.getElementById('shotListItems');
+      if (shotList.length === 0) {
+        container.innerHTML = '<p class="text-muted small text-center py-2">No shot items added yet.</p>';
+        return;
+      }
+
+      container.innerHTML = shotList.map((item, idx) => `
+        <div class="checklist-item ${item.completed ? 'completed' : ''}">
+          <div class="d-flex align-items-center gap-2">
+            <input type="checkbox" class="form-check-input bg-dark border-secondary" ${item.completed ? 'checked' : ''} onclick="toggleShot(${idx})">
+            <span>${item.text}</span>
+          </div>
+          <button class="btn btn-sm text-danger border-0" onclick="deleteShot(${idx})"><i class="fa-solid fa-times"></i></button>
+        </div>
+      `).join('');
+    }
+
+    function renderGearList() {
+      const container = document.getElementById('gearListItems');
+      if (gearList.length === 0) {
+        container.innerHTML = '<p class="text-muted small text-center py-2">No gear items added yet.</p>';
+        return;
+      }
+
+      container.innerHTML = gearList.map((item, idx) => `
+        <div class="checklist-item ${item.completed ? 'completed' : ''}">
+          <div class="d-flex align-items-center gap-2">
+            <input type="checkbox" class="form-check-input bg-dark border-secondary" ${item.completed ? 'checked' : ''} onclick="toggleGear(${idx})">
+            <span>${item.text}</span>
+          </div>
+          <button class="btn btn-sm text-danger border-0" onclick="deleteGear(${idx})"><i class="fa-solid fa-times"></i></button>
+        </div>
+      `).join('');
+    }
+
+    function toggleShot(idx) {
+      shotList[idx].completed = !shotList[idx].completed;
+      saveShotListData();
+      renderShotList();
+    }
+
+    function deleteShot(idx) {
+      shotList.splice(idx, 1);
+      saveShotListData();
+      renderShotList();
+    }
+
+    function toggleGear(idx) {
+      gearList[idx].completed = !gearList[idx].completed;
+      saveShotListData();
+      renderGearList();
+    }
+
+    function deleteGear(idx) {
+      gearList.splice(idx, 1);
+      saveShotListData();
+      renderGearList();
+    }
+
+    /* ==========================================
+       EVENT LISTENERS & FORM VALIDATION
+       ========================================== */
+    function setupEventListeners() {
+      // Quick Search Event
+      const quickSearchInput = document.getElementById('quickSearchInput');
+      quickSearchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value;
+        renderResourcesGrid();
+      });
+
+      document.getElementById('quickSearchBtn').addEventListener('click', () => {
+        const elem = document.getElementById('resources');
+        elem.scrollIntoView({ behavior: 'smooth' });
+      });
+
+      // Difficulty & Sort
+      document.getElementById('difficultySelect').addEventListener('change', (e) => {
+        selectedDifficulty = e.target.value;
+        renderResourcesGrid();
+      });
+
+      document.getElementById('sortSelect').addEventListener('change', (e) => {
+        selectedSort = e.target.value;
+        renderResourcesGrid();
+      });
+
+      // Bookmark Drawer trigger
+      document.getElementById('openBookmarksBtn').addEventListener('click', () => {
+        renderSavedBookmarksModal();
+        const modal = new bootstrap.Modal(document.getElementById('savedBookmarksModal'));
+        modal.show();
+      });
+
+      // Modal Bookmark toggle button
+      document.getElementById('modalBookmarkToggleBtn').addEventListener('click', () => {
+        if (currentModalResourceId) {
+          toggleBookmark(currentModalResourceId);
+          const bmBtn = document.getElementById('modalBookmarkToggleBtn');
+          bmBtn.innerHTML = isBookmarked(currentModalResourceId) 
+            ? '<i class="fa-solid fa-bookmark me-1"></i> Bookmarked' 
+            : '<i class="fa-regular fa-bookmark me-1"></i> Bookmark Guide';
+        }
+      });
+
+      // Download PDF simulator button
+      document.getElementById('modalDownloadBtn').addEventListener('click', () => {
+        showToast("Starting PDF Blueprint Download...");
+      });
+    }
+
+    /* Contact Form Bootstrap Validation */
+    function setupFormValidation() {
+      const form = document.getElementById('contactForm');
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        if (form.checkValidity()) {
+          showToast("Thank you! Your studio inquiry has been received.");
+          form.reset();
+          form.classList.remove('was-validated');
+        } else {
+          form.classList.add('was-validated');
+        }
+      }, false);
+    }
+
+    /* Toast Utility */
+    function showToast(message) {
+      const toastElem = document.getElementById('appToast');
+      document.getElementById('toastMessage').textContent = message;
+      const bsToast = new bootstrap.Toast(toastElem, { delay: 3500 });
+      bsToast.show();
+    }
+  </script>
+</body>
+</html>
